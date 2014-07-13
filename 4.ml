@@ -1,10 +1,13 @@
 (*
  * Find the number of elements in a list.
  *)
-let rec length lst =
-  match lst with
-    [] -> 0
-  | h::t -> 1 + length t
+let length lst =
+  let rec length_helper acc ls =
+    match ls with
+      [] -> acc
+    | h::t -> length_helper (acc + 1) t
+  in
+  length_helper 0 lst
 ;;
   
 assert (length [ "a" ; "b"; "c"] = 3) ;;
